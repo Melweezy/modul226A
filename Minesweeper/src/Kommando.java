@@ -7,7 +7,7 @@ public class Kommando {
         this.zeile = zeile;
         this.spalte = spalte;
     }
-    public void ausfuehren(Board spielfeld) {
+    public void ausfuehren(Spielfeld spielfeld) {
         switch (kommandoZeichen) {
             case "M":
                 spielfeld.markieren(spalte, zeile);

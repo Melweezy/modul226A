@@ -13,17 +13,19 @@ public class Benutzerschnittstelle {
         } while (true);
     }
 
-    public void zeigeSpielfeld(Board spielfeld) {
+    public void zeigeSpielfeld(Spielfeld spielfeld) {
         return;
     }
+
     public void zeigeEingabeaufforderung() {
-        return;
+        System.out.println("Regeln: M = Markieren, T = Treffer. Erste Zahl = Reihe, Zweite Zahl = Spalte. \n T 2 1 oder M 2 5" );
     }
+
     public void zeigeFehlermeldung() {
-        return;
+        System.out.println("Keine korrekte Eingabe: \n z.B. T 5 6 (Treffer Zeile 5 Spalte 6) \n M 2 6 (Markieren Zeile 2 Spalte 6");
     }
     public void zeigeSchlussmeldung() {
-        return;
+        System.out.println("Alle Bombem markiert. Good job!");;
     }
 
 

@@ -1,5 +1,5 @@
 public class Minesweeper {
-    private final Board spielfeld = new Board();
+    private final Spielfeld spielfeld = new Spielfeld();
     private final Benutzerschnittstelle benutzerschnittstelle = new Benutzerschnittstelle();
 
     public static void main(String[] args) {
