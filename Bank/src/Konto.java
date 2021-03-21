@@ -2,7 +2,7 @@ public class Konto {
     private double saldo, zinssatz;
     public Kunde inhaber;
 
-    public Konto(double saldo, double zinssatz, Kunde inhaber) {
+public Konto(double saldo, double zinssatz, Kunde inhaber) {
         this.saldo = saldo;
         this.zinssatz = zinssatz;
         this.inhaber = inhaber;

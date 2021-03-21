@@ -1,19 +1,27 @@
 public class TestKonto {
     public static void main(String[] args) {
-        Konto Konto1 = new Konto(100, "Meier", "Hans",1);
+        /**
+         * Konstruktor1 benutzen (K1 nimmt saldo, zinssatz und kunde-Objekt an)
+         */
+        Kunde meier = new Kunde("Hans", "Meier", 1);
+        Konto kontoMeier = new Konto(100, 1, meier);
 
-        System.out.println("Der Kunde " + Konto1.inhaber.getFullName() + " (" + Konto1.inhaber.getKundenNummer() +")" + " hat ein Konto.");
-        Konto1.einzahlen(0);
-        System.out.println("Der Saldo des Kontos ist: " + Konto1.getSaldo());
-        Konto1.verzinsen(365);
-        System.out.println("Der Saldo des Kontos ist: " + Konto1.getSaldo());
+        System.out.println("Der Kunde " + kontoMeier.inhaber.getFullName() + " (" + kontoMeier.inhaber.getKundenNummer() +")" + " hat ein Konto.");
+        kontoMeier.einzahlen(0);
+        System.out.println("Der Saldo des Kontos ist: " + kontoMeier.getSaldo());
+        kontoMeier.verzinsen(365);
+        System.out.println("Der Saldo des Kontos ist: " + kontoMeier.getSaldo());
 
-        Konto Konto2 = new Konto(500000.50, "Mister", "Sister",2);
+        /**
+         * Konstruktor2 benutzen (K2 nimmt saldo, zinsatz, name, vorname, kundennummer an,
+         * und generiert mit "this.inhaber = new Kunde(name,vorname,kundennummer) selber ein kunde-objekt)
+         */
+        Konto konto2 = new Konto(500000.50, "Mister", "Sister",2);
 
-        System.out.println("Der Kunde " + Konto2.inhaber.getFullName() + " (" + Konto2.inhaber.getKundenNummer() +")" + " hat ein Konto.");
-        Konto2.einzahlen(0);
-        System.out.println("Der Saldo des Kontos ist: " + Konto2.getSaldo());
-        Konto2.verzinsen(365);
-        System.out.println("Der Saldo des Kontos ist: " + Konto2.getSaldo());
+        System.out.println("Der Kunde " + konto2.inhaber.getFullName() + " (" + konto2.inhaber.getKundenNummer() +")" + " hat ein Konto.");
+        konto2.einzahlen(0);
+        System.out.println("Der Saldo des Kontos ist: " + konto2.getSaldo());
+        konto2.verzinsen(365);
+        System.out.println("Der Saldo des Kontos ist: " + konto2.getSaldo());
     }
 }
