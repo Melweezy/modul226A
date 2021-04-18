@@ -52,8 +52,8 @@ public class Spielfeld {
             System.out.print(j + "  ");
         }
         for(int i = 0; i < minefield.length; i++) {
-            if(i >= 9) System.out.printf("\n " + (i+1));
-            if(i < 9) System.out.printf("\n  " + (i+1));
+            if(i >= 9) System.out.print("\n " + (i+1));
+            if(i < 9) System.out.print("\n  " + (i+1));
             for(int j = 0; j < minefield.length; j++){
                 if(minefield[i][j] > 0){
                     System.out.print(" " + minefield[i][j] + " ");

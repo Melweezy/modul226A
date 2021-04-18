@@ -7,4 +7,13 @@ public class Ausgabe {
     public static void schlussTextausgeben() {
         System.out.println("You Win!");
     }
+
+    public static void loseTextausgeben() {
+        System.out.println("Bang bang, you're dead.");
+    }
+
+    public static void restartTextausgeben() {
+        System.out.println("Restart?! - R: Restart anyKey: Exit");
+    }
 }
+

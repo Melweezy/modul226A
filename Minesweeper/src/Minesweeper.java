@@ -7,7 +7,6 @@ public class Minesweeper {
     public static void main(String[] args) throws IOException {
         int x;
         int y = -1;
-        boolean action = false;
         boolean restart = false;
         BufferedReader input = null;
 
@@ -31,14 +30,7 @@ public class Minesweeper {
             System.out.println("Done.\n");
             minefield.showField();
 
-            char actionChar = 'M';
             while (!minefield.playerHasWon()) {
-
-                while (!action) {
-                    System.out.print("Please enter a valid action. (M / H): ");
-                    actionChar  = readChar(input) - 1;
-                }
-
                 while (x < 0 || x >= minefield.getSize()) {
                     System.out.print("Please enter a valid column-number. (from 1 to " + minefield.getSize() + "): ");
                     x = readInt(input) - 1;
@@ -48,7 +40,8 @@ public class Minesweeper {
                     y = readInt(input) - 1;
                 }
                 if (!minefield.move(x, y)) {
-                    System.out.println("Bang bang, you're dead.");
+                    Ausgabe.loseTextausgeben();
+
                     System.exit(0);
                 }
                 minefield.showField();
@@ -56,8 +49,7 @@ public class Minesweeper {
                 y = -1;
             }
             Ausgabe.schlussTextausgeben();
-
-            System.out.println("Restart?! - R: Restart anyKey: Exit");
+            Ausgabe.restartTextausgeben();
 
             if (!input.readLine().equals("R")) {
                 restart = true;
@@ -71,14 +63,6 @@ public class Minesweeper {
             return Integer.parseInt(in.readLine());
         } catch (Throwable e) {
             return -1;
-        }
-    }
-
-    public static char readChar(BufferedReader in) {
-        try {
-            return 'C';
-        } catch (Throwable e) {
-            return 'X';
         }
     }
 }
