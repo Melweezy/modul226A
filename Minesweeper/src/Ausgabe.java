@@ -5,15 +5,11 @@ public class Ausgabe {
     }
 
     public static void schlussTextausgeben() {
-        System.out.println("You Win!");
+        System.out.print("\nYou Win!\nRestart?\nR/r: Restart\nanyKey: Exit\n");
     }
 
     public static void loseTextausgeben() {
-        System.out.println("Bang bang, you're dead.");
-    }
-
-    public static void restartTextausgeben() {
-        System.out.println("Restart?! - R: Restart anyKey: Exit");
+        System.out.print("\nBang bang, you're dead.\n");
     }
 }
 

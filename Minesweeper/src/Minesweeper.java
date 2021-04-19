@@ -4,65 +4,55 @@ import java.io.InputStreamReader;
 
 public class Minesweeper {
 
-    public static void main(String[] args) throws IOException {
-        int x;
+    public static void main(String[] args) {
+        int x = -1;
         int y = -1;
+        int size;
+        char action = 'x';
         boolean restart = false;
-        BufferedReader input = null;
+        BufferedReader input;
 
         while (!restart) {
             Ausgabe.startTextausgeben();
 
-            try {
-                input = new BufferedReader(new InputStreamReader(System.in));
-            } catch (Throwable e) {
-                System.out.println("Input from console not possible. Program terminated.");
-                System.exit(-1);
-            }
+            input = new BufferedReader(new InputStreamReader(System.in));
+            size = Eingabe.readInt(input);
 
-            x = readInt(input);
-            if (x < 5) x = 5; //deal with invalid entries
-            if (x > 10) x = 10;
+            if (size < 5) size = 5; //deal with invalid entries
+            if (size > 10) size = 10;
 
-            System.out.print("Generating mine field...\n");
-            Spielfeld minefield = new Spielfeld(x);
-            x = -1;
-            System.out.println("Done.\n");
+            System.out.print("Generating mine field...\nDone\n");
+
+            Spielfeld minefield = new Spielfeld(size);
             minefield.showField();
 
             while (!minefield.playerHasWon()) {
+                while (action != 'f' && action != 'r') {
+                    System.out.print("Please enter a valid action. 'f': Flag // 'r': Reveal ");
+                    action = Eingabe.readChar(input);
+                }
                 while (x < 0 || x >= minefield.getSize()) {
                     System.out.print("Please enter a valid column-number. (from 1 to " + minefield.getSize() + "): ");
-                    x = readInt(input) - 1;
+                    x = Eingabe.readInt(input) - 1;
                 }
                 while (y < 0 || y >= minefield.getSize()) {
                     System.out.print("Please enter a valid row-number. (from 1 to " + minefield.getSize() + "): ");
-                    y = readInt(input) - 1;
+                    y = Eingabe.readInt(input) - 1;
                 }
-                if (!minefield.move(x, y)) {
+                if (!minefield.move(action, x, y)) {
                     Ausgabe.loseTextausgeben();
-
                     System.exit(0);
                 }
                 minefield.showField();
                 x = -1;
                 y = -1;
+                action = 'x';
             }
             Ausgabe.schlussTextausgeben();
-            Ausgabe.restartTextausgeben();
-
-            if (!input.readLine().equals("R")) {
+            if (Eingabe.readChar(input) != 'r') {
                 restart = true;
             }
         }
         System.exit(0);
-    }
-
-    public static int readInt(BufferedReader in) {
-        try {
-            return Integer.parseInt(in.readLine());
-        } catch (Throwable e) {
-            return -1;
-        }
     }
 }
