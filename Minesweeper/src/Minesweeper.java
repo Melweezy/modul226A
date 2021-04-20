@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Minesweeper {
@@ -10,14 +9,13 @@ public class Minesweeper {
         int size;
         char action = 'x';
         boolean restart = false;
-        BufferedReader input;
+        BufferedReader consoleInput;
 
         while (!restart) {
             Ausgabe.startTextausgeben();
+            consoleInput = new BufferedReader(new InputStreamReader(System.in));
 
-            input = new BufferedReader(new InputStreamReader(System.in));
-            size = Eingabe.readInt(input);
-
+            size = Eingabe.readInt(consoleInput);
             if (size < 5) size = 5; //deal with invalid entries
             if (size > 10) size = 10;
 
@@ -29,15 +27,15 @@ public class Minesweeper {
             while (!minefield.playerHasWon()) {
                 while (action != 'f' && action != 'r') {
                     System.out.print("Please enter a valid action. 'f': Flag // 'r': Reveal ");
-                    action = Eingabe.readChar(input);
+                    action = Eingabe.readChar(consoleInput);
                 }
                 while (x < 0 || x >= minefield.getSize()) {
                     System.out.print("Please enter a valid column-number. (from 1 to " + minefield.getSize() + "): ");
-                    x = Eingabe.readInt(input) - 1;
+                    x = Eingabe.readInt(consoleInput) - 1;
                 }
                 while (y < 0 || y >= minefield.getSize()) {
                     System.out.print("Please enter a valid row-number. (from 1 to " + minefield.getSize() + "): ");
-                    y = Eingabe.readInt(input) - 1;
+                    y = Eingabe.readInt(consoleInput) - 1;
                 }
                 if (!minefield.move(action, x, y)) {
                     Ausgabe.loseTextausgeben();
@@ -49,7 +47,7 @@ public class Minesweeper {
                 action = 'x';
             }
             Ausgabe.schlussTextausgeben();
-            if (Eingabe.readChar(input) != 'r') {
+            if (Eingabe.readChar(consoleInput) != 'r') {
                 restart = true;
             }
         }

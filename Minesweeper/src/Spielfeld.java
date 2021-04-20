@@ -40,10 +40,10 @@ public class Spielfeld {
                     }
                 }
             }
-            if(!bomb) { //if we haven't already placed a mine earlier here...
-                this.minefield[yCol][xRow] = -2; //...we do so now...
+            if(!bomb) { //if a mine wasn't already placed earlier here...
+                this.minefield[yCol][xRow] = -2; //...so we do now...
                 bombs[yCol][xRow] = true;
-                mines--; //...and decrease the number of mines we still need to place
+                mines--; //...and decrease the number of mines we need to place
             }
             bomb = false;
         }
@@ -73,11 +73,10 @@ public class Spielfeld {
         System.out.println();
     }
 
-
     boolean testeFeld(int row, int col) {
         if(minefield[row][col] < -1) return false;
         minefield[row][col] = 0;
-        for(int i = row>0?row-1:row; i <= (row==minefield.length-1?row:row+1); i++)
+        for(int i = row>0?row-1:row; i <= (row==minefield.length-1?row:row+1); i++) //neighbours-checker 2xfor-loop
             for(int j = col>0?col-1:col; j <= (col==minefield.length-1?col:col+1); j++)
                 if(minefield[i][j] == -2){
                     minefield[row][col]++; //check neighbours++
@@ -98,7 +97,7 @@ public class Spielfeld {
         }
         if(!testeFeld(y,x)) return false; //if it's a mine
         if(minefield[y][x] == 0) //if it's an empty space (i.e. no neighboured mines)
-            for(int i = x>0?x-1:x; i <= (x==minefield.length-1?x:x+1); i++) //check neighbours
+            for(int i = x>0?x-1:x; i <= (x==minefield.length-1?x:x+1); i++) //neighbours-checker 2xfor-loop
                 for(int j = y>0?y-1:y; j <= (y==minefield.length-1?y:y+1); j++)
                     if(minefield[j][i] < 0) move(action, i,j); //recursive call to uncover the whole blank area
         return true;
